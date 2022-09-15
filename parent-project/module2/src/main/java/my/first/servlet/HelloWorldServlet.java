@@ -16,12 +16,14 @@ public class HelloWorldServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
         counter++;
         final PrintWriter writer = resp.getWriter();
         writer.println("<h1>Say Hello</h1>");
         writer.println("<h2>Request Number: " + counter + "</h2>");
         final HttpSession session = req.getSession();
         writer.println("<h2>" + session.getId() + "</h2>");
-
+        writer.println("<h2>" + req.getParameter("username") + "</h2>");
+        resp.addHeader("username", req.getParameter("username"));
     }
 }
