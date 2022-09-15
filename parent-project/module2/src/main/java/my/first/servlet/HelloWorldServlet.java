@@ -5,6 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -19,6 +20,8 @@ public class HelloWorldServlet extends HttpServlet {
         final PrintWriter writer = resp.getWriter();
         writer.println("<h1>Say Hello</h1>");
         writer.println("<h2>Request Number: " + counter + "</h2>");
+        final HttpSession session = req.getSession();
+        writer.println("<h2>" + session.getId() + "</h2>");
 
     }
 }
