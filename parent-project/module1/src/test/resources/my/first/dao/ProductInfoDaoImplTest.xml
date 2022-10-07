@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataset>
+    <product_info id="1" product_name="Coffee Black" price="3.5"/>
+    <product_info id="2" product_name="Coffee Espresso" price="2.9"/>
+    <product_info id="3" product_name="Coffee Latte" price="4.0"/>
+    <product_info id="4" product_name="Coffee Latte Big" price="4.5"/>
+    <product_info id="5" product_name="Black Tea" price="2.5"/>
+    <product_info id="6" product_name="Green Tea" price="2.5"/>
+    <product_info id="7" product_name="Water Still" price="1.5"/>
+    <product_info id="8" product_name="Water Sparkling" price="1.5"/>
+    <product_info id="9" product_name="Coca Cola" price="2.0"/>
+    <product_info id="10" product_name="Pepsi Cola" price="2.0"/>
+</dataset>

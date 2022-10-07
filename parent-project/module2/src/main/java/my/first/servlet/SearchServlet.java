@@ -20,7 +20,11 @@ public class SearchServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        searchService = new SearchService();
+        try {
+            searchService = new SearchService();
+        } catch (IOException|ClassNotFoundException e) {
+            throw new ServletException(e);
+        }
     }
 
     @Override

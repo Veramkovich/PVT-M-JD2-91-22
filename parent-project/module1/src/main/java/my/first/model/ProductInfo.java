@@ -1,11 +1,23 @@
 package my.first.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
+@Entity(name = "product_info")
 public class ProductInfo implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @Id
     private int id;
+
+    @Column(name = "product_name")
     private String name;
+
+    @Column
     private double price;
 
     public ProductInfo() {
@@ -44,7 +56,7 @@ public class ProductInfo implements Serializable {
 
         if (id != that.id) return false;
         if (Double.compare(that.price, price) != 0) return false;
-        return name != null ? name.equals(that.name) : that.name == null;
+        return Objects.equals(name, that.name);
     }
 
     @Override
