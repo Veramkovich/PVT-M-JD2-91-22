@@ -4,7 +4,6 @@ import my.first.dao.ProductInfoDao;
 import my.first.dao.ProductInfoDaoImpl;
 import my.first.model.ProductInfo;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,7 +12,7 @@ public class SearchService {
 
     private final ProductInfoDao productInfoDao;
 
-    public SearchService() throws IOException, ClassNotFoundException {
+    public SearchService() {
         this(new ProductInfoDaoImpl());
     }
 

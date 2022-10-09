@@ -1,8 +1,8 @@
 package my.first.dao;
 
+import lombok.SneakyThrows;
 import my.first.MysqlJdbcDataSource;
 import my.first.model.ProductInfo;
-import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
@@ -13,7 +13,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -26,7 +25,8 @@ public class ProductInfoDaoImplTest {
     ProductInfoDao targetObject;
 
     @BeforeClass
-    public static void init() throws Exception {
+    @SneakyThrows
+    public static void init() {
         testDataSource = new MysqlJdbcDataSource("eshop_test.jdbc.properties");
         connection = new MySqlConnection(testDataSource.getConnection(), "eshop_test");
     }
@@ -46,7 +46,8 @@ public class ProductInfoDaoImplTest {
     }
 
     @Test
-    public void readAll() throws DatabaseUnitException, SQLException {
+    @SneakyThrows
+    public void readAll() {
         //Given
         IDataSet dataSet = new FlatXmlDataSetBuilder()
                 .build(ProductInfoDaoImplTest.class.getResourceAsStream("ProductInfoDaoImplTest.xml"));

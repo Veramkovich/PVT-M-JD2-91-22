@@ -1,5 +1,7 @@
 package my.first;
 
+import lombok.SneakyThrows;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,11 +12,13 @@ public class MysqlJdbcDataSource {
 
     private final Properties jdbcProperties;
 
-    public MysqlJdbcDataSource() throws ClassNotFoundException, IOException {
+    @SneakyThrows
+    public MysqlJdbcDataSource() {
         this("eshop.jdbc.properties");
     }
 
-    public MysqlJdbcDataSource(String propertyFileName) throws ClassNotFoundException, IOException {
+    @SneakyThrows
+    public MysqlJdbcDataSource(String propertyFileName) {
         jdbcProperties = new Properties();
         jdbcProperties.load(MysqlJdbcDataSource.class
                 .getClassLoader()
@@ -23,7 +27,8 @@ public class MysqlJdbcDataSource {
         Class.forName(jdbcProperties.getProperty("driver"));
     }
 
-    public Connection getConnection() throws SQLException {
+    @SneakyThrows
+    public Connection getConnection() {
         return DriverManager.getConnection(
                 jdbcProperties.getProperty("url"),
                 jdbcProperties.getProperty("username"),

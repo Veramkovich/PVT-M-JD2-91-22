@@ -3,7 +3,6 @@ package my.first.dao;
 import my.first.MysqlJdbcDataSource;
 import my.first.model.ProductInfo;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +14,7 @@ public class ProductInfoDaoImpl implements ProductInfoDao {
 
     private final MysqlJdbcDataSource dataSource;
 
-    public ProductInfoDaoImpl() throws ClassNotFoundException, IOException {
+    public ProductInfoDaoImpl() {
         this.dataSource = new MysqlJdbcDataSource();
     }
 
