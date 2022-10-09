@@ -34,4 +34,8 @@ public class SearchServlet extends HttpServlet {
         getServletContext().getRequestDispatcher("/jsp/searchResult.jsp")
                 .forward(req, resp);
     }
+
+    public void setSearchService(SearchService searchService) {
+        this.searchService = searchService;
+    }
 }
