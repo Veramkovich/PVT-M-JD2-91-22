@@ -1,5 +1,6 @@
 package my.first;
 
+import my.first.model.Employee;
 import my.first.model.ProductInfo;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -32,6 +33,7 @@ public final class MysqlSessionFactory {
 
         Metadata metadata = new MetadataSources(standardRegistry)
                 .addAnnotatedClass(ProductInfo.class)
+                .addAnnotatedClass(Employee.class)
                 .getMetadataBuilder()
                 .build();
 

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataset>
+    <t_employee F_ID="101" BIRTH_DATE="1977-05-24"
+                CELL_PHONE="+375296101011" FIRSTNAME="Ivan" LASTNAME="Petrov"/>
+    <t_employeedetail F_EMPLOYEEID="101" CITY="MINSK"
+                      COUNTRY="BELARUS" STATE="MINSK" STREET="Stroiteley Dom 5"/>
+</dataset>

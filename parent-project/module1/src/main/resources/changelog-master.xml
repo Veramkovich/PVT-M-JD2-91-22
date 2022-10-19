@@ -15,4 +15,35 @@ create table if not exists product_info (
         </sql>
     </changeSet>
 
+    <changeSet id="2" author="a.veramkovich@gmail.com">
+        <sql>
+            CREATE TABLE IF NOT EXISTS `t_employee` (
+            `F_ID` BIGINT(19) NOT NULL,
+            `BIRTH_DATE` DATE NULL,
+            `CELL_PHONE` VARCHAR(45) NULL,
+            `FIRSTNAME` VARCHAR(255) NULL,
+            `LASTNAME` VARCHAR(255) NULL,
+            PRIMARY KEY (`F_ID`));
+        </sql>
+    </changeSet>
+
+    <changeSet id="3" author="a.veramkovich@gmail.com">
+        <sql>
+            CREATE TABLE IF NOT EXISTS `t_employeedetail` (
+            `F_EMPLOYEEID` BIGINT(19) NOT NULL,
+            `CITY` VARCHAR(45) NULL,
+            `COUNTRY` VARCHAR(45) NULL,
+            `STATE` VARCHAR(45) NULL,
+            `STREET` VARCHAR(255) NULL,
+            PRIMARY KEY (`F_EMPLOYEEID`),
+            CONSTRAINT `F_EMPLOYEEID`
+            FOREIGN KEY (`F_EMPLOYEEID`)
+            REFERENCES `t_employee` (`F_ID`)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE);
+        </sql>
+    </changeSet>
+
+
+
 </databaseChangeLog>
