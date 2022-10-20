@@ -30,4 +30,8 @@ public class Employee {
 
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     private EmployeeDetail employeeDetail;
+
+    @ManyToOne
+    @JoinColumn(name = "F_DEPARTMENTID")
+    private Department department;
 }
