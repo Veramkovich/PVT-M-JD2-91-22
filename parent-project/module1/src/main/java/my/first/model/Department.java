@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "t_department")
@@ -21,5 +22,8 @@ public class Department {
 
     @Column(name = "F_DEPARTMENTNAME")
     private String departmentName;
+
+    @OneToMany(mappedBy = "department")
+    private List<Employee> employees;
 
 }

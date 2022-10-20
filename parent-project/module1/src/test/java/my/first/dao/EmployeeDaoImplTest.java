@@ -23,33 +23,7 @@ import java.sql.ResultSet;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class EmployeeDaoImplTest {
-
-    // JDBC data source
-    static MysqlJdbcDataSource testMysqlJdbcDataSource;
-    // DBUnit connection
-    static IDatabaseConnection iDatabaseConnection;
-    //Hibernate session factory
-    static SessionFactory testSessionFactory;
-
-    @BeforeClass
-    @SneakyThrows
-    public static void init() {
-        testMysqlJdbcDataSource = new MysqlJdbcDataSource("eshop_test.jdbc.properties");
-        iDatabaseConnection = new MySqlConnection(testMysqlJdbcDataSource.getConnection(), "eshop_test");
-
-        StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()
-                .configure("hibernate_test.cfg.xml")
-                .build();
-        Metadata metadata = new MetadataSources(standardRegistry)
-                .addAnnotatedClass(Employee.class)
-                .addAnnotatedClass(EmployeeDetail.class)
-                .addAnnotatedClass(Department.class)
-                .getMetadataBuilder()
-                .build();
-        testSessionFactory = metadata.getSessionFactoryBuilder()
-                .build();
-    }
+public class EmployeeDaoImplTest extends BaseDaoTest {
 
     EmployeeDaoImpl targetObject;
 

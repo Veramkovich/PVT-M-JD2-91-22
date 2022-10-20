@@ -24,33 +24,9 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class ProductInfoDaoImplTest {
-
-    // JDBC data source
-    static MysqlJdbcDataSource testMysqlJdbcDataSource;
-    // DBUnit connection
-    static IDatabaseConnection iDatabaseConnection;
-    //Hibernate session factory
-    static SessionFactory testSessionFactory;
+public class ProductInfoDaoImplTest extends BaseDaoTest {
 
     ProductInfoDao targetObject;
-
-    @BeforeClass
-    @SneakyThrows
-    public static void init() {
-        testMysqlJdbcDataSource = new MysqlJdbcDataSource("eshop_test.jdbc.properties");
-        iDatabaseConnection = new MySqlConnection(testMysqlJdbcDataSource.getConnection(), "eshop_test");
-
-        StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()
-                .configure("hibernate_test.cfg.xml")
-                .build();
-        Metadata metadata = new MetadataSources( standardRegistry )
-                .addAnnotatedClass( ProductInfo.class )
-                .getMetadataBuilder()
-                .build();
-        testSessionFactory = metadata.getSessionFactoryBuilder()
-                .build();
-    }
 
     @Before
     public void setUp() {
