@@ -6,7 +6,10 @@ import my.first.model.Department;
 import my.first.model.Employee;
 import my.first.model.EmployeeDetail;
 import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.ext.mysql.MySqlConnection;
+import org.dbunit.operation.DatabaseOperation;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
@@ -63,10 +66,53 @@ public class DepartmentDaoImplTest extends BaseDaoTest{
     }
 
     @Test
+    @SneakyThrows
     public void findById() {
+        //Given
+        Connection conn = testMysqlJdbcDataSource.getConnection();
+
+        IDataSet departmentDataSet = new FlatXmlDataSetBuilder()
+                .build(DepartmentDaoImpl.class.getResourceAsStream("DepartmentDaoImplTestWithEmployees.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection, departmentDataSet);
+
+        // When
+        Department department = targetObject.findById(1);
+
+        // Then
+        assertEquals(1, department.getId());
+        assertEquals("Hidden", department.getDepartmentName());
+        assertEquals(3, department.getEmployees().size());
+
+        // Cleanup
+        DatabaseOperation.DELETE.execute(iDatabaseConnection, departmentDataSet);
     }
 
     @Test
+    @SneakyThrows
     public void delete() {
+        //Given
+        Connection conn = testMysqlJdbcDataSource.getConnection();
+
+        IDataSet departmentDataSet = new FlatXmlDataSetBuilder()
+                .build(DepartmentDaoImpl.class.getResourceAsStream("DepartmentDaoImplTest.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection, departmentDataSet);
+
+        ResultSet rs = conn.createStatement().executeQuery("select count(*) from t_department;");
+        rs.next();
+        int initialSize = rs.getInt(1);
+        assertEquals(1, initialSize);
+
+        Department department = new Department();
+        department.setDepartmentName("Hidden");
+        department.setId(1);
+
+        // When
+        targetObject.delete(department);
+
+        // Then
+        rs = conn.createStatement().executeQuery("select count(*) from t_department;");
+        rs.next();
+        int actualSize = rs.getInt(1);
+        assertEquals(0, actualSize);
     }
 }
