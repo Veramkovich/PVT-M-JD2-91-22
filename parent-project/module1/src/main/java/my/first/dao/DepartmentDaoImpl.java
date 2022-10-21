@@ -8,7 +8,7 @@ import org.hibernate.Transaction;
 
 public class DepartmentDaoImpl implements DepartmentDao {
 
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     public DepartmentDaoImpl() {
         this(MysqlSessionFactory.getInstance());
@@ -33,7 +33,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
 
     @Override
     public Department findById(long id) {
-        return sessionFactory.openSession().get(Department.class,id);
+        return sessionFactory.openSession().get(Department.class, id);
     }
 
     @Override
