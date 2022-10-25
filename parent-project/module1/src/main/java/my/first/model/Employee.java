@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "t_employee")
@@ -34,4 +35,12 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "F_DEPARTMENTID")
     private Department department;
+
+    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "t_employee_meeting",
+            joinColumns = @JoinColumn(name = "F_EMPLOYEEID"),
+            inverseJoinColumns = @JoinColumn(name = "F_MEETING_ID")
+    )
+    private Set<Meeting> meetings;
 }

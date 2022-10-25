@@ -2,10 +2,7 @@ package my.first.dao;
 
 import lombok.SneakyThrows;
 import my.first.MysqlJdbcDataSource;
-import my.first.model.Department;
-import my.first.model.Employee;
-import my.first.model.EmployeeDetail;
-import my.first.model.ProductInfo;
+import my.first.model.*;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.ext.mysql.MySqlConnection;
 import org.hibernate.SessionFactory;
@@ -38,6 +35,7 @@ public class BaseDaoTest {
                 .addAnnotatedClass(EmployeeDetail.class)
                 .addAnnotatedClass(Department.class)
                 .addAnnotatedClass(ProductInfo.class)
+                .addAnnotatedClass(Meeting.class)
                 .getMetadataBuilder()
                 .build();
         testSessionFactory = metadata.getSessionFactoryBuilder()
