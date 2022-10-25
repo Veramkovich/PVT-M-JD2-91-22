@@ -1,11 +1,17 @@
 package my.first.model;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Set;
 
 @Entity
 @Table(name = "T_MEETING")
+@Getter
+@Setter
 public class Meeting {
 
     @Id
@@ -20,6 +26,6 @@ public class Meeting {
     @Column(name = "F_SUBJECT")
     private String subject;
 
-    @ManyToMany(mappedBy = "meetings")
+    @ManyToMany(mappedBy = "meetings", fetch = FetchType.EAGER)
     private Set<Employee> employees;
 }
