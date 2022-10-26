@@ -1,13 +1,16 @@
 package my.first.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "t_employee")
-@Data
+@Getter
+@Setter
 public class Employee {
 
     @Id
@@ -34,4 +37,12 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "F_DEPARTMENTID")
     private Department department;
+
+    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "t_employee_meeting",
+            joinColumns = @JoinColumn(name = "F_EMPLOYEEID"),
+            inverseJoinColumns = @JoinColumn(name = "F_MEETING_ID")
+    )
+    private Set<Meeting> meetings;
 }

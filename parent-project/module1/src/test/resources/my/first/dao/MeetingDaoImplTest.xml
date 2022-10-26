@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataset>
+    <t_department F_DEPARTMENTID="101" F_DEPARTMENTNAME="Marketing"/>
+    <t_department F_DEPARTMENTID="102" F_DEPARTMENTNAME="Sales"/>
+    <t_employee F_ID="201" F_DEPARTMENTID="101" BIRTH_DATE="1987-05-24"
+                CELL_PHONE="+375296101011" FIRSTNAME="Ivan" LASTNAME="Petrov"/>
+    <t_employee F_ID="202" F_DEPARTMENTID="101" BIRTH_DATE="1997-07-25"
+                CELL_PHONE="+375296101011" FIRSTNAME="Fedor" LASTNAME="Sidorov"/>
+    <t_employee F_ID="203" F_DEPARTMENTID="102" BIRTH_DATE="2000-05-26"
+                CELL_PHONE="+375296101011" FIRSTNAME="Sergey" LASTNAME="Nikolaev"/>
+
+    <t_meeting F_MEETING_ID="301" F_SUBJECT="Sales Planning" F_MEETINGDATE="2022-10-26 12:00:00"/>
+    <t_meeting F_MEETING_ID="302" F_SUBJECT="Marketing KPIs" F_MEETINGDATE="2022-10-27 14:00:00"/>
+
+    <t_employee_meeting F_MEETING_ID="301" F_EMPLOYEEID="201"/>
+    <t_employee_meeting F_MEETING_ID="302" F_EMPLOYEEID="202"/>
+    <t_employee_meeting F_MEETING_ID="301" F_EMPLOYEEID="203"/>
+    <t_employee_meeting F_MEETING_ID="302" F_EMPLOYEEID="203"/>
+</dataset>
