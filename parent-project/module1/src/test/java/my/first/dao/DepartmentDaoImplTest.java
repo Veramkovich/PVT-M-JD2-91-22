@@ -6,7 +6,10 @@ import my.first.model.Department;
 import my.first.model.Employee;
 import my.first.model.EmployeeDetail;
 import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.ext.mysql.MySqlConnection;
+import org.dbunit.operation.DatabaseOperation;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
@@ -19,6 +22,7 @@ import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -33,10 +37,13 @@ public class DepartmentDaoImplTest extends BaseDaoTest{
     }
 
     @After
+    @SneakyThrows
     public void tearDown() {
+        Connection conn = testMysqlJdbcDataSource.getConnection();
+        conn.createStatement().executeUpdate("delete from t_department;");
+        conn.close();
         targetObject = null;
     }
-
 
     @Test
     @SneakyThrows
@@ -58,15 +65,57 @@ public class DepartmentDaoImplTest extends BaseDaoTest{
         rs.next();
         int actualSize = rs.getInt(1);
         assertEquals(1, actualSize);
-        conn.createStatement().executeUpdate("delete from t_department;");
-        conn.close();
     }
 
     @Test
+    @SneakyThrows
+    public void findAllDepartmentNames() {
+        //Given
+        IDataSet dataSet = new FlatXmlDataSetBuilder()
+                .build(DepartmentDaoImplTest.class.getResourceAsStream("DepartmentDaoImplTest.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection, dataSet);
+
+        //When
+        List<String> departmentNames = targetObject.findAllDepartmentNames();
+
+        //Then
+        assertEquals(1, departmentNames.size());
+        assertEquals("Hidden", departmentNames.get(0));
+    }
+
+    @Test
+    @SneakyThrows
     public void findById() {
+        //Given
+        IDataSet dataSet = new FlatXmlDataSetBuilder()
+                .build(EmployeeDaoImplTest.class.getResourceAsStream("DepartmentDaoImplTest.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection, dataSet);
+
+        //When
+        Department department = targetObject.findById(1);
+
+        //Then
+        assertEquals("Hidden", department.getDepartmentName());
     }
 
     @Test
+    @SneakyThrows
     public void delete() {
+        //Given
+        IDataSet dataSet = new FlatXmlDataSetBuilder()
+                .build(EmployeeDaoImplTest.class.getResourceAsStream("DepartmentDaoImplTest.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(iDatabaseConnection, dataSet);
+
+        //When
+        targetObject.delete(1);
+
+        //Then
+        ResultSet rs = testMysqlJdbcDataSource
+                .getConnection()
+                .createStatement()
+                .executeQuery("select count(*) from t_department;");
+        rs.next();
+        int actualSize = rs.getInt(1);
+        assertEquals(0, actualSize);
     }
 }
