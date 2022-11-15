@@ -47,7 +47,7 @@ public final class MysqlSessionFactory {
     private static Map<String, String> buildSettings(String jdbcPropertiesFileName,
                                                      String hibernatePropertiesFileName) {
         Map<String, String> settings = new HashMap<>();
-        settings.put("connection.driver_class",
+        settings.put("hibernate.connection.driver_class",
                 DataConfig.getJdbcProperties(jdbcPropertiesFileName).getProperty("driver"));
         settings.put("hibernate.connection.url",
                 DataConfig.getJdbcProperties(jdbcPropertiesFileName).getProperty("url"));
