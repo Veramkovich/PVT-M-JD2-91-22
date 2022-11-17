@@ -1,11 +1,12 @@
 package my.first.dao;
 
 import my.first.MysqlJdbcDataSource;
-import my.first.MysqlSessionFactory;
 import my.first.model.ProductInfo;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,19 +15,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class ProductInfoDaoImpl implements ProductInfoDao {
 
     private final MysqlJdbcDataSource dataSource;
-    private final SessionFactory sessionFactory;
+
+    @Autowired
+    private SessionFactory sessionFactory;
 
     public ProductInfoDaoImpl() {
         this.dataSource = new MysqlJdbcDataSource();
-        this.sessionFactory = MysqlSessionFactory.getInstance();
-    }
-
-    public ProductInfoDaoImpl(MysqlJdbcDataSource dataSource, SessionFactory sessionFactory) {
-        this.dataSource = dataSource;
-        this.sessionFactory = sessionFactory;
     }
 
     @Override

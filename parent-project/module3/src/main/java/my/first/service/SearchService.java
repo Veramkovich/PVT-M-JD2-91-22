@@ -15,17 +15,13 @@ import java.util.stream.Collectors;
 @Service
 public class SearchService {
 
-
     private final ProductInfoDao productInfoDao;
 
     @Autowired
     @Qualifier("simpleHttpClient")
     private HttpClient httpClient;
 
-    public SearchService() {
-        this(new ProductInfoDaoImpl());
-    }
-
+    @Autowired
     public SearchService(ProductInfoDao productInfoDao) {
         this.productInfoDao = productInfoDao;
     }

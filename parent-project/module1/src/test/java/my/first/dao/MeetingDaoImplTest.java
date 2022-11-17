@@ -1,6 +1,8 @@
 package my.first.dao;
 
 import lombok.SneakyThrows;
+import my.first.TestDataConfig;
+import my.first.TestDataConfig;
 import my.first.model.Meeting;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
@@ -8,19 +10,25 @@ import org.dbunit.operation.DatabaseOperation;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.Connection;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = TestDataConfig.class)
 public class MeetingDaoImplTest extends BaseDaoTest {
 
+    @Autowired
     MeetingDaoImpl targetObject;
 
     @Before
     public void setUp() throws Exception {
-        targetObject = new MeetingDaoImpl(testSessionFactory);
     }
 
     @After

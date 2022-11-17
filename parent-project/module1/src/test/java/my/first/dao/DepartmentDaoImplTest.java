@@ -1,7 +1,7 @@
 package my.first.dao;
 
 import lombok.SneakyThrows;
-import my.first.MysqlJdbcDataSource;
+import my.first.TestDataConfig;
 import my.first.model.Department;
 import my.first.model.Employee;
 import my.first.model.EmployeeDetail;
@@ -19,6 +19,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -26,14 +30,16 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = TestDataConfig.class)
 public class DepartmentDaoImplTest extends BaseDaoTest{
 
 
+    @Autowired
     DepartmentDao targetObject;
 
     @Before
     public void setUp() {
-        targetObject = new DepartmentDaoImpl(testSessionFactory);
     }
 
     @After

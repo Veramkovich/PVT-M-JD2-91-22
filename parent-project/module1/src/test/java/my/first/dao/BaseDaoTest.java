@@ -18,28 +18,13 @@ public class BaseDaoTest {
     static MysqlJdbcDataSource testMysqlJdbcDataSource;
     // DBUnit connection
     static IDatabaseConnection iDatabaseConnection;
-    //Hibernate session factory
-    static SessionFactory testSessionFactory;
+
 
     @BeforeClass
     @SneakyThrows
     public static void init() {
         testMysqlJdbcDataSource = new MysqlJdbcDataSource("eshop_test.jdbc.properties");
         iDatabaseConnection = new MySqlConnection(testMysqlJdbcDataSource.getConnection(), "eshop_test");
-
-        StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()
-                .configure("hibernate_test.cfg.xml")
-                .build();
-        Metadata metadata = new MetadataSources(standardRegistry)
-                .addAnnotatedClass(Employee.class)
-                .addAnnotatedClass(EmployeeDetail.class)
-                .addAnnotatedClass(Department.class)
-                .addAnnotatedClass(ProductInfo.class)
-                .addAnnotatedClass(Meeting.class)
-                .getMetadataBuilder()
-                .build();
-        testSessionFactory = metadata.getSessionFactoryBuilder()
-                .build();
     }
 
 }

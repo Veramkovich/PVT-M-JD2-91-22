@@ -11,7 +11,7 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalUnit;
 
 @Configuration
-@ComponentScan(basePackages = "my.first.service")
+@ComponentScan(basePackages = {"my.first.service", "my.first.dao"})
 public class ServiceContextConfig {
 
     @Bean(name = "httpClientWithTimeout")
