@@ -1,5 +1,6 @@
 package my.first.servlet;
 
+import my.first.dao.ProductInfoDaoImpl;
 import my.first.model.ProductInfo;
 import my.first.service.SearchService;
 
@@ -20,7 +21,7 @@ public class SearchServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        searchService = new SearchService();
+        searchService = new SearchService(new ProductInfoDaoImpl());
     }
 
     @Override

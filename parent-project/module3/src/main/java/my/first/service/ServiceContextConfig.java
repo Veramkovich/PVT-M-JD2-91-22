@@ -8,10 +8,9 @@ import org.springframework.context.annotation.Primary;
 import java.net.http.HttpClient;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 
 @Configuration
-@ComponentScan(basePackages = {"my.first.service", "my.first.dao"})
+@ComponentScan(basePackages = {"my.first"})
 public class ServiceContextConfig {
 
     @Bean(name = "httpClientWithTimeout")

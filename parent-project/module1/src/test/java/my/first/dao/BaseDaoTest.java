@@ -2,16 +2,12 @@ package my.first.dao;
 
 import lombok.SneakyThrows;
 import my.first.MysqlJdbcDataSource;
-import my.first.model.*;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.ext.mysql.MySqlConnection;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.junit.BeforeClass;
+import org.springframework.test.context.TestPropertySource;
 
+@TestPropertySource(value = "classpath:/eshop_test.jdbc.properties")
 public class BaseDaoTest {
 
     // JDBC data source
