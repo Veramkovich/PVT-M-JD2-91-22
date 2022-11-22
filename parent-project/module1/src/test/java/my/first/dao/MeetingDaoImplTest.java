@@ -1,8 +1,6 @@
 package my.first.dao;
 
 import lombok.SneakyThrows;
-import my.first.TestDataConfig;
-import my.first.TestDataConfig;
 import my.first.model.Meeting;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
@@ -12,16 +10,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.Connection;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestDataConfig.class)
 public class MeetingDaoImplTest extends BaseDaoTest {
 
     @Autowired
