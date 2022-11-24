@@ -24,7 +24,7 @@ import static org.junit.Assert.assertNotNull;
 public class EmployeeDaoImplTest extends BaseDaoTest {
 
     @Autowired
-    EmployeeDaoImpl targetObject;
+    EmployeeDao targetObject;
 
     @Before
     public void setUp() {

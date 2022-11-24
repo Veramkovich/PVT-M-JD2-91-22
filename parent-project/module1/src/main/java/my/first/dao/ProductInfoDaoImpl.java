@@ -2,11 +2,10 @@ package my.first.dao;
 
 import my.first.MysqlJdbcDataSource;
 import my.first.model.ProductInfo;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@Transactional
 public class ProductInfoDaoImpl implements ProductInfoDao {
 
     private final MysqlJdbcDataSource dataSource;
@@ -29,15 +29,7 @@ public class ProductInfoDaoImpl implements ProductInfoDao {
 
     @Override
     public void create(ProductInfo productInfo) {
-        Transaction tx = null;
-        try (Session sess = sessionFactory.openSession()) {
-            tx = sess.beginTransaction();
-            sess.saveOrUpdate(productInfo);
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null) tx.rollback();
-            throw e;
-        }
+        sessionFactory.getCurrentSession().saveOrUpdate(productInfo);
     }
 
     @Override
@@ -67,14 +59,8 @@ public class ProductInfoDaoImpl implements ProductInfoDao {
 
     @Override
     public void delete(ProductInfo productInfo) {
-        Transaction tx = null;
-        try (Session sess = sessionFactory.openSession()) {
-            tx = sess.beginTransaction();
-            sess.delete(productInfo);
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null) tx.rollback();
-            throw e;
-        }
+        sessionFactory.getCurrentSession().delete(productInfo);
     }
+
+
 }

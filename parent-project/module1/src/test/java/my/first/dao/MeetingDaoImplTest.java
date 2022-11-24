@@ -22,7 +22,7 @@ import static org.junit.Assert.assertTrue;
 public class MeetingDaoImplTest extends BaseDaoTest {
 
     @Autowired
-    MeetingDaoImpl targetObject;
+    MeetingDao targetObject;
 
     @Before
     public void setUp() throws Exception {
