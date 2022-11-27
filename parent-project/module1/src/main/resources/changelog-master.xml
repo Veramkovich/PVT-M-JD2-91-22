@@ -7,11 +7,11 @@
 
     <changeSet id="1" author="a.veramkovich@gmail.com">
         <sql>
-create table if not exists product_info (
-    id int not null primary key,
-    product_name varchar(255),
-    price float
-);
+            create table if not exists product_info (
+            id int not null primary key,
+            product_name varchar(255),
+            price float
+            );
         </sql>
     </changeSet>
 
@@ -47,7 +47,7 @@ create table if not exists product_info (
     <changeSet id="4" author="a.veramkovich@gmail.com">
         <sql>
             CREATE TABLE IF NOT EXISTS t_employee_seq (
-                next_val INT UNSIGNED PRIMARY KEY NOT NULL
+            next_val INT UNSIGNED PRIMARY KEY NOT NULL
             );
             INSERT INTO t_employee_seq VALUES (0);
         </sql>
@@ -68,20 +68,29 @@ create table if not exists product_info (
     <changeSet id="6" author="a.veramkovich@gmail.com">
         <sql>
             CREATE TABLE IF NOT EXISTS `t_meeting` (
-                `F_MEETING_ID` BIGINT(19) UNSIGNED PRIMARY KEY NOT NULL,
-                `F_MEETINGDATE` DATETIME,
-                `F_SUBJECT` VARCHAR(255) NOT NULL
+            `F_MEETING_ID` BIGINT(19) UNSIGNED PRIMARY KEY NOT NULL,
+            `F_MEETINGDATE` DATETIME,
+            `F_SUBJECT` VARCHAR(255) NOT NULL
             );
             CREATE TABLE IF NOT EXISTS t_meeting_seq (
-                next_val INT UNSIGNED PRIMARY KEY NOT NULL
+            next_val INT UNSIGNED PRIMARY KEY NOT NULL
             );
             CREATE TABLE IF NOT EXISTS t_employee_meeting (
-                `F_EMPLOYEEID` BIGINT(19) NOT NULL,
-                `F_MEETING_ID` BIGINT(19) UNSIGNED NOT NULL,
-                CONSTRAINT `F_EMPLOYEE_ID` FOREIGN KEY (`F_EMPLOYEEID`) REFERENCES `t_employee` (`F_ID`),
-                CONSTRAINT `F_MEETINGID` FOREIGN KEY (`F_MEETING_ID`) REFERENCES `t_meeting` (`F_MEETING_ID`)
+            `F_EMPLOYEEID` BIGINT(19) NOT NULL,
+            `F_MEETING_ID` BIGINT(19) UNSIGNED NOT NULL,
+            CONSTRAINT `F_EMPLOYEE_ID` FOREIGN KEY (`F_EMPLOYEEID`) REFERENCES `t_employee` (`F_ID`),
+            CONSTRAINT `F_MEETINGID` FOREIGN KEY (`F_MEETING_ID`) REFERENCES `t_meeting` (`F_MEETING_ID`)
             );
             INSERT INTO t_meeting_seq VALUES (0);
+        </sql>
+    </changeSet>
+    <changeSet id="7" author="a.veramkovich@gmail.com">
+        <sql>
+            CREATE TABLE IF NOT EXISTS `t_counter` (
+            `id` BIGINT(19) UNSIGNED PRIMARY KEY NOT NULL,
+            `count` BIGINT(19)
+            );
+            INSERT INTO t_counter VALUES (0,0);
         </sql>
     </changeSet>
 
