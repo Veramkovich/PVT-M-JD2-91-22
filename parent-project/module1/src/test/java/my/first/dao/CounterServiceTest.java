@@ -33,7 +33,7 @@ public class CounterServiceTest extends BaseDaoTest {
         for (int i = 0; i < 100; i++) {
             new Thread(() -> targetObject.updateCount()).start();
         }
-        Thread.sleep(5000);
+        Thread.sleep(2_000);
 
         //Then
         rs = conn.createStatement().executeQuery("select count from t_counter where id=0;");

@@ -67,8 +67,8 @@ public class DataConfig {
             @Value("root") String userName,
             @Value("${password}") String password,
             @Value("true") boolean removeAbandonedOnBorrow,
-            @Value("20") int initialSize,
-            @Value("30") int maxTotal) {
+            @Value("50") int initialSize,
+            @Value("100") int maxTotal) {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setUrl(url);
         dataSource.setDriverClassName(driverClassName);
