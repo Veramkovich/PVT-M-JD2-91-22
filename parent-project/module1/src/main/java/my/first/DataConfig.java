@@ -1,6 +1,5 @@
 package my.first;
 
-import lombok.SneakyThrows;
 import my.first.model.*;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
@@ -18,31 +17,13 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = "my.first")
+@ComponentScan(basePackages = "my.first.dao")
 @PropertySource(value = {
         "classpath:/eshop.jdbc.properties",
         "classpath:/hibernate.properties"
 })
 @EnableTransactionManagement
 public class DataConfig {
-
-    public static final String JDBC_PROPERTIES_FILE_NAME = "eshop.jdbc.properties";
-    public static final String HIBERNATE_PROPERTIES_FILE_NAME = "hibernate.properties";
-
-    private static Properties jdbcProperties;
-
-
-    @SneakyThrows
-    public static Properties getJdbcProperties(String propertyFileName) {
-        if (jdbcProperties == null) {
-            jdbcProperties = new Properties();
-            jdbcProperties.load(MysqlJdbcDataSource.class
-                    .getClassLoader()
-                    .getResourceAsStream(propertyFileName));
-        }
-        return jdbcProperties;
-    }
-
 
     @Bean
     public Properties hibernateProperties(

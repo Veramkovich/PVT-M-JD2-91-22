@@ -1,6 +1,7 @@
 package my.first.dao;
 
 import lombok.SneakyThrows;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ public class CounterServiceTest extends BaseDaoTest {
     CounterService targetObject;
 
     @Test
+    @Ignore
     @SneakyThrows
     public void updateCount() {
         //Given
