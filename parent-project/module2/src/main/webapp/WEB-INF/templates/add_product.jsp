@@ -42,10 +42,21 @@
   </div>
 </nav>
 
+<form method="post" action="/hello/add-product.html">
+  <div class="mb-3">
+    <label for="name1" class="form-label">Name</label>
+    <input type="text" name="name" class="form-control" id="name1" aria-describedby="nameHelp">
+    <div id="nameHelp" class="form-text">Enter product name</div>
+  </div>
+  <div class="mb-3">
+    <label for="price1" class="form-label">Price</label>
+    <input type="number" name="price" class="form-control" id="price1">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 
     <a>index.jsp</a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   </body>
 </html>
-

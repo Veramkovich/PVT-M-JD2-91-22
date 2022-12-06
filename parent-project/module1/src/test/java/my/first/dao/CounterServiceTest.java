@@ -1,7 +1,6 @@
 package my.first.dao;
 
 import lombok.SneakyThrows;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ public class CounterServiceTest extends BaseDaoTest {
     CounterService targetObject;
 
     @Test
-    @Ignore
     @SneakyThrows
     public void updateCount() {
         //Given
@@ -32,7 +30,7 @@ public class CounterServiceTest extends BaseDaoTest {
         assertEquals(0, count);
 
         //When
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             new Thread(() -> targetObject.updateCount()).start();
         }
         Thread.sleep(2_000);
@@ -41,7 +39,7 @@ public class CounterServiceTest extends BaseDaoTest {
         rs = conn.createStatement().executeQuery("select count from t_counter where id=0;");
         rs.next();
         count = rs.getInt(1);
-        assertEquals(100, count);
+        assertEquals(10, count);
     }
 
 
