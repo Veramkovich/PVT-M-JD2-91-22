@@ -29,6 +29,8 @@ public class ServletContainerInitializerImpl implements ServletContainerInitiali
                 ctx.addServlet("dispatcherServlet", dispatcherServlet);
         servletRegistration.setLoadOnStartup(1);
         servletRegistration.addMapping("*.html");
+        // *.view - GET
+        // *.action - POST
 
     }
 }

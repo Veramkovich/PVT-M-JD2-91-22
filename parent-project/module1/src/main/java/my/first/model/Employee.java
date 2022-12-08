@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,6 +13,14 @@ import java.util.Set;
 @Getter
 @Setter
 public class Employee {
+
+    public Employee() {
+        if (employeeDetail == null) {
+            setEmployeeDetail(new EmployeeDetail());
+        }
+        getEmployeeDetail().setEmployee(this);
+        setMeetings(new HashSet<>());
+    }
 
     @Id
     @Column(name = "F_ID")
@@ -45,4 +54,18 @@ public class Employee {
             inverseJoinColumns = @JoinColumn(name = "F_MEETING_ID")
     )
     private Set<Meeting> meetings;
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", birthDate=" + birthDate +
+                ", cellPhone='" + cellPhone + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", employeeDetail=" + employeeDetail +
+                ", department=" + department +
+                ", meetings=" + meetings +
+                '}';
+    }
 }
