@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,14 +12,6 @@ import java.util.Set;
 @Getter
 @Setter
 public class Employee {
-
-    public Employee() {
-        if (employeeDetail == null) {
-            setEmployeeDetail(new EmployeeDetail());
-        }
-        getEmployeeDetail().setEmployee(this);
-        setMeetings(new HashSet<>());
-    }
 
     @Id
     @Column(name = "F_ID")

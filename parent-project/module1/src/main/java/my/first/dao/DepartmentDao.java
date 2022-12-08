@@ -17,4 +17,6 @@ public interface DepartmentDao {
     void delete(long id);
 
     void delete(Department department);
+
+    List<Department> findAll();
 }

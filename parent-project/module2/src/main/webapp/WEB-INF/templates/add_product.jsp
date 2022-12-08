@@ -1,4 +1,6 @@
 <jsp:include page="_header.jsp"/>
+<h1>Add product</h1>
+
 <form method="post" action="/hello/add-product.html">
   <div class="mb-3">
     <label for="name1" class="form-label">Name</label>
@@ -11,4 +13,5 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
 <jsp:include page="_footer.jsp"/>

@@ -1,5 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="_header.jsp"/>
-<a>Add employee</a>
+<h1>Add employee</h1>
+
 <form method="post" action="/hello/add-employee.html">
   <!-- firstName -->
   <div class="mb-3">
@@ -30,6 +32,15 @@
        <label for="employeeDetail.street" class="form-label">Street</label>
        <input type="text" name="employeeDetail.street" class="form-control" id="employeeDetail.street" aria-describedby="nameHelp">
        <div id="nameHelp" class="form-text">Enter street address</div>
+   </div>
+
+   <div class="mb-3">
+   <label for="department.id">Choose a department:</label>
+   <select class="form-select" id="department.id" name="department.id">
+     <c:forEach items="${departments}" var="department">
+     <option value="${department.id}">${department.departmentName}</option>
+     </c:forEach>
+   </select>
    </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

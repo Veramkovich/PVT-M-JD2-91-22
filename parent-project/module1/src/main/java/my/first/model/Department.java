@@ -1,6 +1,7 @@
 package my.first.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -8,7 +9,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "t_department")
-@Data
+@Getter
+@Setter
 public class Department {
 
     @Id
@@ -26,4 +28,11 @@ public class Department {
     @OneToMany(mappedBy = "department")
     private List<Employee> employees;
 
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", departmentName='" + departmentName + '\'' +
+                '}';
+    }
 }

@@ -49,4 +49,10 @@ public class DepartmentDaoImpl implements DepartmentDao {
         session.refresh(department);
         session.delete(department);
     }
+
+    @Override
+    public List<Department> findAll() {
+        String query = "FROM Department";
+        return sessionFactory.getCurrentSession().createQuery(query, Department.class).list();
+    }
 }
