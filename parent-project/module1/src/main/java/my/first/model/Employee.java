@@ -34,6 +34,9 @@ public class Employee {
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     private EmployeeDetail employeeDetail;
 
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
+    private EmployeePhoto employeePhoto;
+
     @ManyToOne
     @JoinColumn(name = "F_DEPARTMENTID")
     private Department department;

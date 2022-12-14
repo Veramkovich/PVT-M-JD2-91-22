@@ -1,5 +1,6 @@
 package my.first.web;
 
+import lombok.SneakyThrows;
 import my.first.model.Department;
 import my.first.model.Employee;
 import my.first.service.DepartmentService;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -32,9 +35,11 @@ public class AddEmployeeController {
     }
 
     @PostMapping("/add-employee.html")
-    public String addEmployee(Employee employee) {
+    @SneakyThrows
+    public String addEmployee(@RequestParam("photo") MultipartFile file, Employee employee) {
         System.out.println("Call addEployee: " + employee);
-        employeeService.add(employee);
+        System.out.println(file.getOriginalFilename() + ": " + file.getSize());
+        employeeService.add(employee, file.getBytes());
         return "redirect:/employee-list.html";
     }
 

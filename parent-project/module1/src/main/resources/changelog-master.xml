@@ -93,5 +93,18 @@
             INSERT INTO t_counter VALUES (0,0);
         </sql>
     </changeSet>
+    <changeSet id="8" author="a.veramkovich@gmail.com">
+        <sql>
+            CREATE TABLE IF NOT EXISTS `t_employee_photo` (
+            `ID` VARCHAR(256) PRIMARY KEY NOT NULL,
+            `EMPLOYEE_ID` BIGINT(19) NOT NULL,
+            `EMPLOYEE_PHOTO` MEDIUMBLOB NOT NULL,
+            CONSTRAINT `F_EMPLOYEEID_PHOTO`
+            FOREIGN KEY (`EMPLOYEE_ID`)
+            REFERENCES `t_employee` (`F_ID`)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE);
+        </sql>
+    </changeSet>
 
 </databaseChangeLog>

@@ -7,12 +7,14 @@
     <th>Name</th>
     <th>Address</th>
     <th>Department</th>
+    <th>Photo</th>
   </tr>
   <c:forEach items="${employees}" var="employee">
   <tr>
     <td><c:out value="${employee.firstName} ${employee.lastName}"/></td>
     <td><c:out value="${employee.employeeDetail.city} ${employee.employeeDetail.street}"/></td>
     <td><c:out value="${employee.department.departmentName}"/></td>
+    <td><image src="/hello/image/${employee.id}/photo.jpg" class="img-thumbnail"><td>
   </tr>
   </c:forEach>
 </table>

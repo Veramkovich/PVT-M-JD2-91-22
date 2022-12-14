@@ -2,7 +2,11 @@
 <jsp:include page="_header.jsp"/>
 <h1>Add employee</h1>
 
-<form method="post" action="/hello/add-employee.html">
+<form method="post" action="/hello/add-employee.html" enctype="multipart/form-data">
+  <div class="mb-3">
+      <label for="photo" class="form-label">Photo</label>
+      <input type="file" name="photo" class="form-control" id="photo">
+  </div>
   <!-- firstName -->
   <div class="mb-3">
     <label for="firstName" class="form-label">First Name</label>

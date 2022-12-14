@@ -1,14 +1,18 @@
 package my.first.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity(name = "product_info")
-@Data
+@Setter
+@Getter
 public class ProductInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,4 +30,13 @@ public class ProductInfo implements Serializable {
 
     @Column
     private double price;
+
+    @Override
+    public String toString() {
+        return "ProductInfo{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }

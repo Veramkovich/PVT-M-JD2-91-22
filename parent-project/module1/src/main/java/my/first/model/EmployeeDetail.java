@@ -1,13 +1,15 @@
 package my.first.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "t_employeedetail")
-@Data
+@Getter
+@Setter
 public class EmployeeDetail {
 
     @Id
@@ -35,4 +37,14 @@ public class EmployeeDetail {
     @PrimaryKeyJoinColumn
     private Employee employee;
 
+    @Override
+    public String toString() {
+        return "EmployeeDetail{" +
+                "id=" + id +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", state='" + state + '\'' +
+                ", street='" + street + '\'' +
+                '}';
+    }
 }
