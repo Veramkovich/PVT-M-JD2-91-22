@@ -1,6 +1,7 @@
 package my.first.servlet;
 
 import my.first.DataConfig;
+import my.first.security.WebSecurityConfig;
 import my.first.service.ServiceContextConfig;
 import my.first.web.WebConfiguration;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -21,7 +22,7 @@ public class ServletContainerInitializerImpl implements ServletContainerInitiali
         context.register(WebConfiguration.class);
         context.register(DataConfig.class);
         context.register(ServiceContextConfig.class);
-
+        context.register(WebSecurityConfig.class);
         DispatcherServlet dispatcherServlet =
                 new DispatcherServlet(context);
 
