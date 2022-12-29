@@ -117,7 +117,7 @@
             INSERT INTO `app_user` VALUES (
             '10000000-0000-0000-0000-000000000001',
             'root',
-            'root',
+            '{noop}root',
             'ADMIN'
             );
         </sql>

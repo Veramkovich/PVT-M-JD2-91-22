@@ -20,8 +20,10 @@ public class AuthenticationService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("Call: loadUserByUsername");
         try {
             List<AppUser> appUsers = appUserService.findUserByUsername(username);
+            System.out.println("Found user: " + appUsers.size());
             if (appUsers.size() != 1) {
                 throw new UsernameNotFoundException("User not found: " + username);
             }
@@ -34,6 +36,7 @@ public class AuthenticationService implements UserDetailsService {
             );
 
         } catch (Exception e) {
+            e.printStackTrace();
             throw new UsernameNotFoundException("User not found: " + username, e);
         }
     }

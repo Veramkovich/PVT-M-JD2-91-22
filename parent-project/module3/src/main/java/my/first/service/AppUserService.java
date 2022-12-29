@@ -14,6 +14,7 @@ public class AppUserService {
     AppUserDao appUserDao;
 
     public List<AppUser> findUserByUsername(String username) {
+        System.out.println("Search for user: " + username);
         return appUserDao.findByUserName(username);
     }
 }
