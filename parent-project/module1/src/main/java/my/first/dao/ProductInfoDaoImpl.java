@@ -35,8 +35,7 @@ public class ProductInfoDaoImpl implements ProductInfoDao {
     @Override
     public List<ProductInfo> readAll() {
         List<ProductInfo> products = new ArrayList<>();
-        try {
-            final Connection connection = dataSource.getConnection();
+        try (final Connection connection = dataSource.getConnection()) {
             final Statement statement = connection.createStatement();
             final ResultSet resultSet = statement.executeQuery("SELECT * FROM product_info");
             while (resultSet.next()) {

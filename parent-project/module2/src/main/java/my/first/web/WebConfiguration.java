@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@ComponentScan(basePackages = "my.first.web")
+@ComponentScan(basePackages = {"my.first.web"})
 @EnableWebMvc
 public class WebConfiguration {
 
